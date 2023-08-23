@@ -18,7 +18,7 @@ const FeaturedCities = () => {
   const getFeaturedCities = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/api/v1/featured-cities/get-featured-cities"
+        "https://travelbuddyserver.onrender.com/api/v1/featured-cities/get-featured-cities"
       );
 
       if (res.data) {
