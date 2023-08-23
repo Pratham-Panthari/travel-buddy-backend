@@ -8,7 +8,7 @@ const FeturedHotels = () => {
   const getFeaturedHotels = async () => {
     try {
       const res = await axios.get(
-        "https://travelbuddyserver.onrender.com//api/v1/hotel/get-featured-hotels?featured=true"
+        "https://travelbuddyserver.onrender.com/api/v1/hotel/get-featured-hotels?featured=true"
       );
       
       if (res.data) {
