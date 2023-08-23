@@ -15,9 +15,7 @@ const app = express()
 
 
 
-app.use(cors({
-    origin: ["https://travelbuddyserver.onrender.com/api/v1/rooms", "http://localhost:3000", "https://main--transcendent-mousse-f90932.netlify.app/"]
-}))
+app.use(cors())
 
 app.use(express.json())
 
