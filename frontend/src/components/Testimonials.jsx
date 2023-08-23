@@ -6,7 +6,7 @@ const Testimonials = () => {
   const getAllTestimonials = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/api/v1/testimonials/get-testimonials"
+        "https://travelbuddyserver.onrender.com/api/v1/testimonials/get-testimonials"
       );
       if (res.data) {
         setTestimonials(res.data.testimonials);
