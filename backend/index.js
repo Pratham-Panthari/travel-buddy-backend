@@ -16,7 +16,9 @@ const app = express()
 
 
 
-app.use(cors())
+app.use(cors({
+    origin: ["https://travelbuddyserver.onrender.com/api/v1/rooms", "http://localhost:8080"]
+})
 
 app.use(express.json())
 
