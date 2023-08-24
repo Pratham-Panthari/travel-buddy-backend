@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Layout/Header'
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
@@ -19,7 +19,7 @@ const Login = () => {
     setLoading(true)
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/auth/login', { email, password })
+      const res = await axios.post('https://travelbuddyserver.onrender.com/api/v1/auth/login', { email, password })
       if(res.data){
         
         toast.success(res.data.message)
@@ -42,6 +42,10 @@ const Login = () => {
       
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  },[])
   
   return (
     <>

@@ -12,7 +12,7 @@ const Profile = () => {
 
     const getReservation = async (req, res) => {
         try {
-            const res = await axios.get('http://localhost:8080/api/v1/reservation/get-all-reservations')    
+            const res = await axios.get('https://travelbuddyserver.onrender.com/api/v1/reservation/get-all-reservations')    
             if(res?.data){
                 setReservations(res.data.reservations)
             }        
@@ -23,6 +23,7 @@ const Profile = () => {
 
     useEffect(() => {
         getReservation()
+        window.scrollTo(0, 0)
     }, [])
 
     

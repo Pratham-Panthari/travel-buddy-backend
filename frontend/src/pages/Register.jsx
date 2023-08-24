@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import Header from '../components/Layout/Header'
 import { toast, ToastContainer } from 'react-toastify'
@@ -18,7 +18,7 @@ const Register = () => {
     
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/auth/register', { username, email, password })
+      const res = await axios.post('https://travelbuddyserver.onrender.com/api/v1/auth/register', { username, email, password })
       
       if(res.data){
         setLoading(true)
@@ -31,6 +31,10 @@ const Register = () => {
       toast.error(error.res.data.message)
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>

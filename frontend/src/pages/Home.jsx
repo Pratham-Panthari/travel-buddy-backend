@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/Layout/Layout'
 import world from '../assets/images/world.png'
 import heroimg from '../assets/images/hero-img01.jpg'
@@ -17,9 +17,9 @@ import NewsLetter from '../components/NewsLetter'
 const Home = () => {
 
   
-  /* useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0)
-  },[]) */
+  },[]) 
 
   return (
     <>
