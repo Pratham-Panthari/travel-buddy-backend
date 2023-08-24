@@ -51,7 +51,11 @@ const Profile = () => {
                                         </div>
                                         {
                                             reservation.map((reserve) => 
-                                                    <div key={reserve._id} className='mt-2  shadow-xl shadow-gray-500/50 rounded-md'>
+
+                                            
+                                                auth?.id == reserve.userId ? 
+                                                (<>
+                                                    <div key={reserve._id} className='mt-2 shadow-xl shadow-gray-500/50 rounded-md'>
                                                         <div className='px-3 py-4 lg:flex rounded-md border-3'>
                                                             <div className='lg:w-[20%] border-r-4'>
                                                                 <h1 className='text-lg text-black font-normal'><b>Hotel Name</b></h1>
@@ -95,12 +99,18 @@ const Profile = () => {
                                                                             <div key={index}>
                                                                                 <h1 className='text-md, text-black'>{format(new Date(date), "MM/dd/yyyy")}</h1>
                                                                             </div>
-                                                                            )
+                                                                        )
                                                                 }
                                                                 
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </>) 
+                                                : 
+                                                (<>
+                                                    
+                                                </>)
+                                            
                                                    )
                                             }
                                     </div>
