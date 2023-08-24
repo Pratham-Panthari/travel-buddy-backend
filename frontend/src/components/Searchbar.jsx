@@ -41,9 +41,9 @@ const Searchbar = () => {
   
   return (
     <>
-      <div className="mt-12 md:mt-16 rounded-full flex w-full shadow-lg shadow-grey-500/50">
-        <form className="flex w-full px-4" onSubmit={handleSubmit}>
-          <div className="col px-3 py-2 w-[33%] border-r-2">
+      <div className="mt-12 md:mt-16 md:rounded-full lg:rounded-full rounded-sm flex w-full shadow-lg shadow-grey-500/50">
+        <form className="lg:flex md:flex w-full px-4 py-3" onSubmit={handleSubmit}>
+          <div className="col px-3 py-2 lg:w-[33%] md:w-[33%] lg:border-r-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -55,7 +55,7 @@ const Searchbar = () => {
             >
               <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
             </svg>
-            <span className="ml-2 md:text-md text-sm text-red-400">
+            <span className="ml-2 md:text-md text-xs text-red-400">
               Location
             </span>
             <input
@@ -68,7 +68,7 @@ const Searchbar = () => {
               }}
             />
           </div>
-          <div className="col px-2 py-1 w-[33%] border-r-2">
+          <div className="col px-2 py-1 lg:w-[33%] md:w-[33%] border-r-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -84,7 +84,7 @@ const Searchbar = () => {
               onClick={() => {
                 setOpenDate((prevState) => !prevState);
               }}
-              className="ml-2 md:text-md text-sm text-red-400 cursor-pointer"
+              className="ml-2 lg:text-md text-xs text-red-400 cursor-pointer"
             >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
               date[0].endDate,
               "dd/MM/yyyy"
@@ -99,7 +99,7 @@ const Searchbar = () => {
               />
             )}
           </div>
-          <div className="col px-2 py-1 w-[33%] ">
+          <div className="col px-2 py-1 lg:w-[33%] md:w-[33%] ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -120,7 +120,7 @@ const Searchbar = () => {
           </div>
           <button
             type="submit"
-            className="rounded-full px-3 py-1 bg-amber-500 hover:bg-amber-600 self-center"
+            className="rounded-full px-3 py-1 bg-amber-500 hover:bg-amber-600 self-center "
             onClick={handleSearch}
           >
             <svg

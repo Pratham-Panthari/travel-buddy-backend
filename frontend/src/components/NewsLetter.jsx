@@ -6,7 +6,7 @@ const NewsLetter = () => {
     <>
       <section className="mt-12 w-full mx-auto ">
         <div className="w-full bg-amber-300">
-          <div className="w-[80%] mx-auto flex gap-4">
+          <div className="lg:w-[80%] md:w-[80%] w-full mx-auto flex gap-4">
             <div className="lg:w-[50%] w-full px-4 py-6">
               <h1 className="mt-16 text-stone-900 lg:text-3xl text-xl font-semibold">
                 Subscribe to our newsletter to get regular travelling updates

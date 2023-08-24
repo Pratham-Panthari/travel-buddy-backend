@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <>
-      <section className='mt-4 w-[80%] mx-auto'>
-        <div className='flex justify-center'>
+      <section className='mt-4 lg:w-[80%] md:w-[80%] w-full mx-auto'>
+        <div className='flex md:justify-center lg:justify-center'>
           <div className='w-[33%]'>
             <Link to='/'><img className='h-12 w-auto' src={Logo} alt='TravelBuddy Logo' /></Link> 
           </div>
@@ -24,6 +24,7 @@ const Footer = () => {
         </div>
         <div className='mt-6'>
           <h1 className='text-lg text-stone-800 text-center font-normal'>All material herein © 2023 Travel Buddy PVT. Ltd. All Rights Reserved.</h1>
+          <h1 className='text-lg text-stone-800 text-center font-normal'><i>Designed and Created By Pratham Panthari</i></h1>
         </div>
       </section>
     </>

@@ -15,20 +15,21 @@ const Register = () => {
   const navigate = useNavigate()
   
   const handleSubmit = async (e) => {
-    
+    setLoading(true)
     e.preventDefault()
     try {
       const res = await axios.post('https://travelbuddyserver.onrender.com/api/v1/auth/register', { username, email, password })
       
       if(res.data){
-        setLoading(true)
+        
         toast.success(res.data.message)
-        setLoading(false)
+        
         navigate('/login')
       }
     } catch (error) {
-     
+      setLoading(false)
       toast.error(error.res.data.message)
+      
     }
   }
 

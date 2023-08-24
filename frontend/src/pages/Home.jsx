@@ -68,7 +68,7 @@ const Home = () => {
             
             
           </div>
-          <section className='mt-12 py-5 w-[80%] mx-auto '>
+          <section className='mt-12 py-5 lg:w-[80%] md:lg:w-[80%] w-full mx-auto '>
             <Searchbar />
           </section>
          

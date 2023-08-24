@@ -68,7 +68,7 @@ const SearchResultList = () => {
       <Layout>
         <section className='mt-12 w-[80%] mx-auto'>
           <div className='w-full lg:flex gap-4 '>
-            <div className='lg:w-[25%] w-full bg-amber-500 rounded-xl lg:max-h-[500px] max-h-[800px]'>
+            <div className='lg:w-[25%] w-full bg-amber-500 rounded-xl lg:max-h-[600px] xl:max-h-[500px] py-3'>
               <div className='px-4 py-3'>
                 <h1 className='px-2 mt-6 text-blue-900 text-xl font-bold focus:ring-0'>Search</h1>
                 <span className='px-2 text-black text-md font-normal'>Destination</span>

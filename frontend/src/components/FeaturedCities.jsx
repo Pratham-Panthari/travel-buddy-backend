@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 const FeaturedCities = () => {
   const [cities, setCities] = useState([]);
-
+  const [loading, setLoading] = useState(false)
   const containerRef = useRef(null);
 
   const scrollRight = (scrollOffSet) => {
@@ -16,6 +16,7 @@ const FeaturedCities = () => {
   };
 
   const getFeaturedCities = async () => {
+    setLoading(true)
     try {
       const res = await axios.get(
         "https://travelbuddyserver.onrender.com/api/v1/featured-cities/get-featured-cities"
@@ -23,6 +24,7 @@ const FeaturedCities = () => {
 
       if (res.data) {
         setCities(res.data.cities);
+        setLoading(false)
       }
     } catch (error) {
       
@@ -35,6 +37,17 @@ const FeaturedCities = () => {
 
   return (
     <>
+      {
+      
+      loading ? 
+      (<>
+        <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </>) :
+      (<>
       <section className="mt-12 w-[80%] mx-auto h-auto">
         <div className="lg:w-[10%] md:w-[20%] w-[35%] rounded-full flex items-center md:px-5 md:py-3 px-3 py-2 bg-amber-400">
           <span className="subtitle md:text-black md:text-xl text-lg">
@@ -121,6 +134,8 @@ const FeaturedCities = () => {
           </button>
         </div>
       </section>
+      </>)
+      }
     </>
   );
 };

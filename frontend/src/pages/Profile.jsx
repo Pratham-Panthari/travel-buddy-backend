@@ -9,12 +9,14 @@ const Profile = () => {
     const [auth, setAuth] = useAuth()
 
     const [reservation, setReservations] = useState([])
-
-    const getReservation = async (req, res) => {
+    const [loading, setLoading] = useState(false)
+    const getReservation = async () => {
+        setLoading(true)
         try {
             const res = await axios.get('https://travelbuddyserver.onrender.com/api/v1/reservation/get-all-reservations')    
             if(res?.data){
                 setReservations(res.data.reservations)
+                setLoading(false)
             }        
         } catch (error) {
             
@@ -50,7 +52,17 @@ const Profile = () => {
                                             <hr />
                                         </div>
                                         {
-                                            reservation.map((reserve) => 
+                                            loading ?
+                                            (<>
+                                                <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
+                                                    <div class="spinner-border" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </>) :
+                                            (<>
+                                            {
+                                                reservation.map((reserve) => 
 
                                             
                                                 auth?.id == reserve.userId ? 
@@ -113,6 +125,8 @@ const Profile = () => {
                                             
                                                    )
                                             }
+                                            </>)
+                                        }
                                     </div>
                                 </div>
                             </div>
