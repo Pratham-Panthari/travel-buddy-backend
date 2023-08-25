@@ -5,12 +5,15 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ErrorIcon } from 'react-hot-toast';
 const Register = () => {
 
   const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showError, setShowError] = useState(false)
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
   
@@ -28,7 +31,8 @@ const Register = () => {
       }
     } catch (error) {
       setLoading(false)
-      toast.error(error.res.data.message)
+      setShowError(true)
+      setError(error.response.data.messsage)
       
     }
   }
@@ -120,6 +124,14 @@ const Register = () => {
             </div>
 
             <div>
+                {
+                  showError && 
+                  (<>
+                    <div className='mt-2 mb-2'>
+                      <h1 className='text-md text-red-800 font-bold'>{error}</h1>
+                    </div>
+                  </>)
+                }
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -24,8 +24,10 @@ const HotelDetails = () => {
   const [selectedRoomsNumber, setSelectedRoomsNumber] = useState([])
   const [roomList, setRoomList] = useState([])
   const [openModal, setOpenModal] = useState(false) 
+  const [openDetails,setOpenDetails] = useState(true) 
   const [hotel, setHotel] = useState({})
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   //To get the hotel id from the URL
   const params = useParams()
@@ -138,11 +140,11 @@ const HotelDetails = () => {
     <>
      { 
      
-     loading ? 
+     loading ?  
      (<>
         <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
      </>) : 
@@ -151,8 +153,15 @@ const HotelDetails = () => {
 
       {
         openModal && (
-        <div className='flex items-center justify-center absolute top-[200px] left-0 w-[100%]  mx-auto z-20' >
+        <div className='flex items-center justify-center top-[200px] left-0 w-[100%]  mx-auto z-20' >
           <div className='bg-white px-6 py-6 lg:w-[75%] rounded-md shadow-lg shadow-gray-500/50 '>
+            <button className='text-lg text-black font-semibold hover:underline mt-2 mb-2 ' onClick={() => { setOpenModal((prevState) => !prevState); setOpenDetails((prevState) => !prevState) }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16" style={{display:'inline', marginRight:'10px'}}>
+                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+              </svg>
+              Go Back
+            </button>
             {
               roomList.map(room => 
                   <div key={room._id} className='border-4 px-2 py-2 mb-2'>
@@ -192,20 +201,31 @@ const HotelDetails = () => {
                               )
                         }
                         </div>
-                        <div className='mt-4'>
-                          <button className='px-2 py-2 bg-blue-800 text-white text-sm font-bold hover:bg-blue-900 rounded-xl' onClick={() =>{handleReservation(); handleClick(); }}>Reserve Room</button>
-                        </div>
+                        
                       </div>
                       
                     </div>
                   </div>
                   )
             }
+            <div className='mt-4 w-[75%] flex flex-col justify center mx-auto'>
+              { showError && 
+                (<>
+                  <div className='mt-2'>
+                    <h1 className='text-sm text-red-600 text-semibold text-center'>Please Select a room</h1>
+                  </div>
+                </>) 
+              }
+              <button className='px-2 py-2 bg-blue-800 text-white text-sm font-bold hover:bg-blue-900 rounded-xl' onClick={() =>{ if(selectedRooms.length === 0) { setShowError(true) } else{ handleReservation(); handleClick(); }  }}>Reserve Room</button>
+            </div>
           </div>
         </div>
       )
       }
-      <section className='mt-12 w-[80%] mx-auto'>
+      {
+        openDetails &&
+        (<>
+        <section className='mt-12 w-[80%] mx-auto'>
         <div className='px-2 py-1 w-full'>
           <div className='w-full lg:flex shrink-0 gap-3'>
             <div className='lg:w-[75%] w-full px-2 py-1'>
@@ -219,7 +239,7 @@ const HotelDetails = () => {
               <span className='text-emerald-600 text-md font-normal block'>Book a stay-over at this hotel and get a free airport taxi</span>
             </div>
             <div className='lg:w-[25%] w-full place-items-end'>
-              <button className='mt-6 mb-2 px-3 py-2 bg-amber-400 hover:bg-amber-500 rounded-xl text-md font-bold text-black text-center' onClick={() => { setOpenModal((prevState) => !prevState); getHotelRooms() }}>Reserve or Book Now</button>
+              <button className='mt-6 mb-2 px-3 py-2 bg-amber-400 hover:bg-amber-500 rounded-xl text-md font-bold text-black text-center' onClick={() => { setOpenModal((prevState) => !prevState); setOpenDetails((prevState) => !prevState); getHotelRooms() }}>Reserve or Book Now</button>
             </div>
           </div>
           <div className='mt-2 w-full grid lg:grid-cols-3 md:grd-cols-2 grid-cols-1 gap-2'>
@@ -253,7 +273,7 @@ const HotelDetails = () => {
                 <h1 className='px-4 text-lg text-black font-bold text-end'>Rs. {hotel.cheapestPrice}</h1>
                 <p className='px-4  text-md text-black font-normal text-end'><i>per night</i></p>
                 <div className='px-3 py-2'>
-                  <button className='mt-6 mb-2 px-3 py-2 w-full bg-amber-400 hover:bg-amber-500 rounded-xl text-md font-bold text-black text-center' onClick={() => { setOpenModal((prevState) => !prevState); window.scrollTo(0, 0) ;getHotelRooms() }}>Reserve or Book Now</button>
+                  <button className='mt-6 mb-2 px-3 py-2 w-full bg-amber-400 hover:bg-amber-500 rounded-xl text-md font-bold text-black text-center' onClick={() => { setOpenModal((prevState) => !prevState); setOpenDetails((prevState) => !prevState); window.scrollTo(0, 0) ;getHotelRooms() }}>Reserve or Book Now</button>
                 </div>
               </div>
               
@@ -262,6 +282,8 @@ const HotelDetails = () => {
         </div>
       </section>
       <NewsLetter />
+        </>)
+      }
       </Layout>
      </>)
      }

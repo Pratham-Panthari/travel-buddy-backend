@@ -12,6 +12,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showError, setShowError] = useState(false)
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
@@ -38,7 +40,9 @@ const Login = () => {
     } catch (error) {
       
       setLoading(false)
-      toast.error(error.res.data.message)
+      setShowError(true)
+      setError(error.response.data.message)
+      
       
     }
   }
@@ -56,8 +60,8 @@ const Login = () => {
       (<>
         <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
           <h1 className='text-xl text-black font-semibold'>Loading, Please Do not refresh or leave this page...</h1>
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       </>) 
@@ -113,6 +117,14 @@ const Login = () => {
               </div>
 
               <div>
+                {
+                  showError && 
+                  (<>
+                    <div className='mt-2 mb-2'>
+                      <h1 className='text-md text-red-800 font-bold'>{error}</h1>
+                    </div>
+                  </>)
+                }
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

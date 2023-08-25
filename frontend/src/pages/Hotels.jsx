@@ -111,8 +111,8 @@ const Hotels = () => {
               loading ? 
               (<>
                 <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                 </div>
               </>) : 
