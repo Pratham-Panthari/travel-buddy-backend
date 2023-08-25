@@ -80,7 +80,7 @@ const HotelDetails = () => {
     const dates = []
 
     while(date <= end){
-      dates.push(new Date(date).getTime())
+      dates.push(new Date(date).setHours(0, 0, 0, 0))
       date.setDate(date.getDate() + 1)
     }
     return dates
@@ -91,21 +91,21 @@ const HotelDetails = () => {
 
   
   //Checking if a paticular room is available on the booking dates provided by the  user
-  const isAvailable = (roomNumber) => {
-
-    if (roomNumber.unavailableDates) {
-
-      const isFound = roomNumber.unavailableDates.some((date) => 
-        bookedDates.includes(new Date(date).getTime()),
-        
-      );
-      
-      return !isFound;
+  const isAvailable = (unavailableDates) => {
+    
+    const unavailableDate = unavailableDates.map((d) => {
+      return new Date(d).setHours(0, 0, 0, 0)
+    })
+    
+    if(unavailableDate.length > 0){
+      const isFound = unavailableDate.map((d) => 
+      {return bookedDates.includes(d)}
+      )
+      return !isFound
     }
-
     return true
   }
-
+  
   const handleClick = async () => {
     try {
       await Promise.all(
@@ -156,9 +156,9 @@ const HotelDetails = () => {
         <div className='flex items-center justify-center top-[200px] left-0 w-[100%]  mx-auto z-20' >
           <div className='bg-white px-6 py-6 lg:w-[75%] rounded-md shadow-lg shadow-gray-500/50 '>
             <button className='text-lg text-black font-semibold hover:underline mt-2 mb-2 ' onClick={() => { setOpenModal((prevState) => !prevState); setOpenDetails((prevState) => !prevState) }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16" style={{display:'inline', marginRight:'10px'}}>
-                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" className="bi bi-box-arrow-in-left" viewBox="0 0 16 16" style={{display:'inline', marginRight:'10px'}}>
+                <path fillRule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+                <path fillRule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
               </svg>
               Go Back
             </button>
@@ -179,7 +179,7 @@ const HotelDetails = () => {
                         {
                           room.roomNumbers.map(r => 
                               <div key={r._id} className='ml-2 '>
-                                <label className='lg:text-lg text-xs text-black font-semibold mr-2 diabled:opacity-50'>{r.number}</label>
+                                <label className='lg:text-lg text-xs text-black font-semibold mr-2 disabled:opacity-50'>{r.number}</label>
                                 <input type='checkbox' className='focus:ring-0 border-2 disabled:opacity-50 disabled:bg-gray-600 checked:bg-green-600 checked:before:bg-green-600'  
                                   value={r._id} 
                                   
@@ -196,7 +196,7 @@ const HotelDetails = () => {
                                     );
                                     
                                   }}  
-                                  disabled={!isAvailable(r)} />
+                                  disabled={!isAvailable(r.unavailableDates)} />
                               </div>
                               )
                         }
