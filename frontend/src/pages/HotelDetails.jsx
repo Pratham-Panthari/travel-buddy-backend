@@ -6,6 +6,7 @@ import NewsLetter from '../components/NewsLetter';
 import { useDate } from '../context/dateContext';
 import { useAuth } from '../context/authContext';
 
+
 const HotelDetails = () => {
 
   const navigate = useNavigate()
