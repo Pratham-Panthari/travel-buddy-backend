@@ -7,7 +7,7 @@ const Testimonials = () => {
     setLoading(true)
     try {
       const res = await axios.get(
-        "https://travelbuddyserver.onrender.com/api/v1/testimonials/get-testimonials"
+        "http://54.172.59.173:8080/api/v1/testimonials/get-testimonials"
       );
       if (res.data) {
         setTestimonials(res.data.testimonials);
@@ -26,7 +26,7 @@ const Testimonials = () => {
       {
         loading ? 
         (<>
-        <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
+        <div className='w-[80%] mx-auto h-full flex flex-col justify-center items-center'>
           
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>

@@ -33,7 +33,7 @@ const Hotels = () => {
   const getAllHotels = async () => {
     setLoading(true)
     try {
-      const res = await axios.get('https://travelbuddyserver.onrender.com/api/v1/hotel/get-all-hotels?featured=false')
+      const res = await axios.get('http://54.172.59.173:8080/api/v1/hotel/get-all-hotels?featured=false')
       if(res.data){
         setHotels(res.data.hotels)
         setLoading(false)
@@ -50,7 +50,7 @@ const Hotels = () => {
         getAllHotels()
       }
       else{
-        const res = await axios.get(`https://travelbuddyserver.onrender.com/api/v1/hotel/get-all-hotels?featured=false&city=${destination}&min=${min}&max=${max}`)
+        const res = await axios.get(`http://54.172.59.173:8080/api/v1/hotel/get-all-hotels?featured=false&city=${destination}&min=${min}&max=${max}`)
         if(res.data){
           setHotels(res.data.hotels)
           setLoading(false)
@@ -110,7 +110,7 @@ const Hotels = () => {
             {
               loading ? 
               (<>
-                <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
+                <div className='w-[80%] mx-auto flex h-screen flex-col justify-center items-center'>
                   <div className="spinner-border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </div>

@@ -9,7 +9,7 @@ const FeturedHotels = () => {
     setLoading(true)
     try {
       const res = await axios.get(
-        "https://travelbuddyserver.onrender.com/api/v1/hotel/get-featured-hotels?featured=true"
+        "http://54.172.59.173:8080/api/v1/hotel/get-featured-hotels?featured=true"
       );
       
       if (res.data) {
@@ -32,7 +32,7 @@ const FeturedHotels = () => {
         
       loading ? 
       (<>
-      <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
+      <div className='w-[80%] mx-auto flex h-full flex-col justify-center items-center'>
           
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -41,7 +41,7 @@ const FeturedHotels = () => {
       </>) : 
       (<>
         <section className="mt-12 w-[80%] mx-auto h-auto">
-          <div className="flex lg:w-[12%] md:w-[23%] w-[45%] rounded-full flex items-center md:px-5 md:py-3 px-3 py-2 bg-amber-400">
+          <div className="flex lg:w-[12%] md:w-[23%] w-[45%] rounded-full items-center md:px-5 md:py-3 px-3 py-2 bg-amber-400">
             <span className="subtitle md:text-black md:text-xl text-lg">
               Experience
             </span>

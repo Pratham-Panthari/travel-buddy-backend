@@ -21,7 +21,7 @@ const Login = () => {
     setLoading(true)
     e.preventDefault()
     try {
-      const res = await axios.post('https://travelbuddyserver.onrender.com/api/v1/auth/login', { email, password })
+      const res = await axios.post('http://54.172.59.173:8080/api/v1/auth/login', { email, password })
       if(res.data){
         
         toast.success(res.data.message)
@@ -58,7 +58,7 @@ const Login = () => {
     {
       loading ? 
       (<>
-        <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
+        <div className='w-[80%] mx-auto flex h-full flex-col justify-center items-center'>
           <h1 className='text-xl text-black font-semibold'>Loading, Please Do not refresh or leave this page...</h1>
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>

@@ -13,7 +13,7 @@ const Profile = () => {
     const getReservation = async () => {
         setLoading(true)
         try {
-            const res = await axios.get('https://travelbuddyserver.onrender.com/api/v1/reservation/get-all-reservations')    
+            const res = await axios.get('http://54.172.59.173:8080/api/v1/reservation/get-all-reservations')    
             if(res?.data){
                 setReservations(res.data.reservations)
                 setLoading(false)
@@ -54,7 +54,7 @@ const Profile = () => {
                                         {
                                             loading ?
                                             (<>
-                                                <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
+                                                <div className='w-[80%] mx-auto flex h-screen flex-col justify-center items-center'>
                                                     <div class="spinner-border" role="status">
                                                         <span class="visually-hidden">Loading...</span>
                                                     </div>

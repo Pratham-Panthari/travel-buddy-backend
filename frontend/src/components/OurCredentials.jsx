@@ -44,7 +44,7 @@ const OurCredentials = () => {
                 </div>
               </div>
             </div>
-            <div className="flex lg:block md:block hidden w-[70%] justify-center">
+            <div className="flex lg:block md:block w-[70%] justify-center">
               <img src={experience} alt="Happy Customers" />
             </div>
           </div>

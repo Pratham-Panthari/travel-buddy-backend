@@ -30,7 +30,7 @@ const SearchResultList = () => {
   
   const getAllHotels = async () => {
     try {
-      const res = await axios.get('https://travelbuddyserver.onrender.com/api/v1/hotel/get-all-hotels?featured=false')
+      const res = await axios.get('http://54.172.59.173:8080/api/v1/hotel/get-all-hotels?featured=false')
       if(res.data){
         setHotels(res.data.hotels)
       }
@@ -45,7 +45,7 @@ const SearchResultList = () => {
         getAllHotels()
       }
       else{
-        const res = await axios.get(`https://travelbuddyserver.onrender.com/api/v1/hotel/get-all-hotels?featured=false&city=${destination}&min=${min}&max=${max}`)
+        const res = await axios.get(`http://54.172.59.173:8080/api/v1/hotel/get-all-hotels?featured=false&city=${destination}&min=${min}&max=${max}`)
         if(res.data){
           setHotels(res.data.hotels)
         }

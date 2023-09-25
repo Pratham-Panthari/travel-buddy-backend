@@ -6,7 +6,6 @@ import NewsLetter from '../components/NewsLetter';
 import { useDate } from '../context/dateContext';
 import { useAuth } from '../context/authContext';
 
-
 const HotelDetails = () => {
 
   const navigate = useNavigate()
@@ -38,7 +37,7 @@ const HotelDetails = () => {
     setLoading(true)
     try {
       const id = params.id
-      const res = await axios.get(`https://travelbuddyserver.onrender.com/api/v1/hotel/get-single-hotel/${id}`)
+      const res = await axios.get(`http://54.172.59.173:8080/api/v1/hotel/get-single-hotel/${id}`)
       if(res.data){
         setHotel(res.data.hotel);
         setLoading(false)
@@ -52,7 +51,7 @@ const HotelDetails = () => {
   //Fetch the hotel rooms based on the hotel id
   const getHotelRooms = async() => {
     try {
-      const res = await axios.get(`https://travelbuddyserver.onrender.com/api/v1/hotel/rooms/${hotel._id}`)
+      const res = await axios.get(`http://54.172.59.173:8080/api/v1/hotel/rooms/${hotel._id}`)
       if(res?.data){
         setRoomList(res.data.list);
       }
@@ -111,7 +110,7 @@ const HotelDetails = () => {
     try {
       await Promise.all(
         selectedRooms.map((id) => {
-          const res =  axios.put(`https://travelbuddyserver.onrender.com/api/v1/rooms/update-room-availability/${id}`, {dates: bookedDates})
+          const res =  axios.put(`http://54.172.59.173:8080/api/v1/rooms/update-room-availability/${id}`, {dates: bookedDates})
           return res
         })
       )
@@ -123,7 +122,7 @@ const HotelDetails = () => {
 
   const handleReservation = async() => {
     try {
-        const res = await axios.post('https://travelbuddyserver.onrender.com/api/v1/reservation/create-reservation', { hotelName: hotel.name, roomName: selectedRoomsName, roomPrice: selectedRoomsPrice, username: auth?.username , userId: auth?.id, roomNumber: selectedRoomsNumber, reservationDate: bookedDates, })
+        const res = await axios.post('http://54.172.59.173:8080/api/v1/reservation/create-reservation', { hotelName: hotel.name, roomName: selectedRoomsName, roomPrice: selectedRoomsPrice, username: auth?.username , userId: auth?.id, roomNumber: selectedRoomsNumber, reservationDate: bookedDates, })
         navigate('/confirmation')
       } catch (error) {
       
@@ -143,7 +142,7 @@ const HotelDetails = () => {
      
      loading ?  
      (<>
-        <div className='w-[80%] mx-auto flex h-screen flex flex-col justify-center items-center'>
+        <div className='w-[80%] mx-auto flex h-screen flex-col justify-center items-center'>
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

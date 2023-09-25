@@ -19,7 +19,7 @@ const FeaturedCities = () => {
     setLoading(true)
     try {
       const res = await axios.get(
-        "https://travelbuddyserver.onrender.com/api/v1/featured-cities/get-featured-cities"
+        "http://54.172.59.173:8080/api/v1/featured-cities/get-featured-cities"
       );
 
       if (res.data) {
@@ -41,7 +41,7 @@ const FeaturedCities = () => {
       
       loading ? 
       (<>
-        <div className='w-[80%] mx-auto flex h-full flex flex-col justify-center items-center'>
+        <div className='w-[80%] mx-auto flex h-full flex-col justify-center items-center'>
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
